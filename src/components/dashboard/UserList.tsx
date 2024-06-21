@@ -1,5 +1,8 @@
 import userImg from "../../assets/1.png"
 import Image from "../ui/Image"
+// import { Link } from "react-router-dom"
+// import { Routes, Route } from "react-router-dom"
+// import EditPage from "../edit/EditPage"
 
 import {
   DropdownMenu,
