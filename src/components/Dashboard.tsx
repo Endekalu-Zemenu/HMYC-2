@@ -1,56 +1,16 @@
-// import userImg from "../assets/1.png"
-// import Image from "./ui/Image"
-// import { Link } from "react-router-dom"
-// import {
-//   // File,
-//   // Home,
-//   // LineChart,
-//   // ListFilter,
-//   MoreHorizontal,
-//   // Package,
-//   // Package2,
-//   // PanelLeft,
-//   // PlusCircle,
-//   // Search,
-//   // Settings,
-//   // ShoppingCart,
-//   // Users2,
-// } from "lucide-react"
-
-// import { Badge } from "./ui/badge"
-
-// import { Button } from "./ui/button"
 import {
   Card,
-  CardContent,
-  // CardDescription,
-  CardFooter,
-  // CardHeader,
-  // CardTitle,
+  CardContent
 } from "./ui/card"
-// import {
-//   DropdownMenu,
-//   // DropdownMenuCheckboxItem,
-//   DropdownMenuContent,
-//   DropdownMenuItem,
-//   DropdownMenuLabel,
-//   // DropdownMenuSeparator,
-//   DropdownMenuTrigger,
-// } from "./ui/dropdown-menu"
 
 import {
   Table,
-  TableBody,
-  // TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
+  TableBody
 } from "./ui/table"
+
 import {
   Tabs,
   TabsContent,
-  // TabsList,
-  // TabsTrigger,
 } from "./ui/tabs"
 import SideBar from "./dashboard/SideBar"
 import Header from "./dashboard/Header"
@@ -58,6 +18,8 @@ import HeaderTabs from "./dashboard/HeaderTabs"
 import UserList from "./dashboard/UserList"
 
 import people from "./dashboard/people.js"
+import TableHeaderItems from "./dashboard/TableHeaderItems.js"
+import TableFooterItems from "./dashboard/TableFooterItems.js"
 
 export function Dashboard() {
   return (
@@ -72,27 +34,7 @@ export function Dashboard() {
               <Card x-chunk="dashboard-06-chunk-0">
                 <CardContent>
                   <Table>
-                    <TableHeader>
-                      <TableRow>
-                        <TableHead className="hidden w-[100px] sm:table-cell">
-                          <span className="sr-only">Image</span>
-                        </TableHead>
-                        <TableHead>Name</TableHead>
-                        <TableHead className="hidden md:table-cell">
-                          ID
-                        </TableHead>
-                        <TableHead>Status</TableHead>
-                        <TableHead className="hidden md:table-cell">
-                          Age
-                        </TableHead>
-                        <TableHead className="hidden md:table-cell">
-                          Registered at
-                        </TableHead>
-                        <TableHead>
-                          <span className="sr-only">Actions</span>
-                        </TableHead>
-                      </TableRow>
-                    </TableHeader>
+                    <TableHeaderItems />
                     <TableBody>
                       {
                         people.map((person: {name: string, age: number, id: number, badge: string}, index: number) => (
@@ -106,14 +48,9 @@ export function Dashboard() {
                         ))
                       }
                     </TableBody>
-                  </Table>
+                  </Table>           
                 </CardContent>
-                <CardFooter>
-                  <div className="text-xs text-muted-foreground">
-                    Showing <strong>1-10</strong> of <strong>32</strong>{" "}
-                    users
-                  </div>
-                </CardFooter>
+                <TableFooterItems />
               </Card>
             </TabsContent>
           </Tabs>
