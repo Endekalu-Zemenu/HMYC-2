@@ -57,6 +57,7 @@ import Header from "./dashboard/Header"
 import HeaderTabs from "./dashboard/HeaderTabs"
 import UserList from "./dashboard/UserList"
 
+import people from "./dashboard/people.js"
 
 export function Dashboard() {
   return (
@@ -93,7 +94,17 @@ export function Dashboard() {
                       </TableRow>
                     </TableHeader>
                     <TableBody>
-                      <UserList />
+                      {
+                        people.map((person: {name: string, age: number, id: number, badge: string}, index: number) => (
+                          <UserList
+                            key={index}
+                            name={person.name}
+                            age={person.age}
+                            id={person.id}
+                            badge={person.badge}
+                          />
+                        ))
+                      }
                     </TableBody>
                   </Table>
                 </CardContent>

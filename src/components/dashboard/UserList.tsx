@@ -14,8 +14,14 @@ import { MoreHorizontal } from "lucide-react"
 import { Badge } from "../ui/badge"
 import { Button } from "../ui/button"
 
+type person = {
+  name: string
+  id: number
+  badge:  string
+  age: number
+}
 
-const UserList = () => {
+const UserList = ({ name, id, badge, age }: person) => {
   return (
     <TableRow>
       <TableCell className="hidden sm:table-cell">
@@ -28,19 +34,19 @@ const UserList = () => {
         />
       </TableCell>
       <TableCell className="font-medium">
-        Abebe Lakew Befkadu
+        { name }
       </TableCell>
       <TableCell className="hidden md:table-cell">
-        1
+        { id }
       </TableCell>
       <TableCell>
-        <Badge variant="outline">Inactive</Badge>
+        <Badge variant="outline">{ badge }</Badge>
       </TableCell>
       <TableCell className="hidden md:table-cell">
-        25
+        { age }
       </TableCell>
       <TableCell className="hidden md:table-cell">
-        2023-07-12 &nbsp; (10:42 AM)
+        2023-07-12
       </TableCell>
       <TableCell>
         <DropdownMenu>

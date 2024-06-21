@@ -2,37 +2,23 @@ import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
-  // DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu"
 
 import {
-  // Tabs,
-  // TabsContent,
   TabsList,
   TabsTrigger,
 } from "../ui/tabs"
 
 import {
   File,
-  // Home,
-  // LineChart,
   ListFilter,
-  // MoreHorizontal,
-  // Package,
-  // Package2,
-  // PanelLeft,
   PlusCircle,
-  // Search,
-  // Settings,
-  // ShoppingCart,
-  // Users2,
 } from "lucide-react"
 
 import { Button } from "../ui/button"
-// import userImg from "../../assets/1.png"
 
 const HeaderTabs = () => {
   return (
