@@ -26,8 +26,8 @@ const HeaderTabs = () => {
       <TabsList>
         <TabsTrigger value="all">All</TabsTrigger>
         <TabsTrigger value="active">Active</TabsTrigger>
-        <TabsTrigger value="draft">Inactive</TabsTrigger>
-        <TabsTrigger value="archived" className="hidden sm:flex">
+        <TabsTrigger value="inactive">Inactive</TabsTrigger>
+        <TabsTrigger value="deceased" className="hidden sm:flex">
           Deceased
         </TabsTrigger>
       </TabsList>

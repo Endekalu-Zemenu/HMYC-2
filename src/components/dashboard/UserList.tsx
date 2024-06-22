@@ -16,6 +16,7 @@ import { TableCell, TableRow } from "../ui/table"
 import { MoreHorizontal } from "lucide-react"
 import { Badge } from "../ui/badge"
 import { Button } from "../ui/button"
+import { Link } from "react-router-dom"
 
 type person = {
   name: string
@@ -65,7 +66,7 @@ const UserList = ({ name, id, badge, age }: person) => {
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem>Edit</DropdownMenuItem>
+            <DropdownMenuItem><Link to="/edit">Edit</Link></DropdownMenuItem>
             <DropdownMenuItem>Delete</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
