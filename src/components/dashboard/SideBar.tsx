@@ -21,7 +21,7 @@ const SideBar = () => {
             <TooltipTrigger asChild>
               <Link
                 to="#"
-                className="group bg-primary flex h-9 w-9 items-center justify-center rounded-full text-primary-foreground transition-colors md:h-8 md:w-8"
+                className="group flex h-9 w-9 items-center justify-center rounded-full text-muted-foreground transition-colors md:h-8 md:w-8"
               >
                 <Home className="group-hover:scale-110 h-5 w-5" />
                 <span className="sr-only">Dashboard</span>
@@ -35,7 +35,7 @@ const SideBar = () => {
             <TooltipTrigger asChild>
               <Link
                 to="#"
-                className="group flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
+                className="group bg-primary rounded-full flex h-9 w-9 items-center justify-center text-primary-foreground transition-colors md:h-8 md:w-8"
               >
                 <Users2 className="group-hover:scale-110 h-5 w-5" />
                 <span className="sr-only">Users</span>

@@ -61,7 +61,7 @@ export function Dashboard() {
   }
 
   useEffect(() => {
-    handleStatusBadge()
+    handleStatusBadge();
   }, [statusBadge, handleStatusBadge])
 
   return (
@@ -72,8 +72,8 @@ export function Dashboard() {
         <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8">
           <Tabs>
             <div className="flex items-center">
-              <TabsList defaultValue={statusBadge}>
-                <TabsTrigger value="all" onClick={() => handleClick("all")}>
+              <TabsList defaultValue="all">
+                <TabsTrigger value="all"  onClick={() => handleClick("all")}>
                   All
                 </TabsTrigger>
                 <TabsTrigger
@@ -112,7 +112,10 @@ export function Dashboard() {
                   <DropdownMenuContent align="end">
                     <DropdownMenuLabel>Filter by</DropdownMenuLabel>
                     <DropdownMenuSeparator />
-                    <DropdownMenuCheckboxItem checked>
+                    <DropdownMenuCheckboxItem>
+                      All
+                    </DropdownMenuCheckboxItem>
+                    <DropdownMenuCheckboxItem>
                       Active
                     </DropdownMenuCheckboxItem>
                     <DropdownMenuCheckboxItem>
