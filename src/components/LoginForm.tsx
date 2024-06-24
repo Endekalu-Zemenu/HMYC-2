@@ -14,7 +14,7 @@ import { Label } from "./ui/label"
 export function LoginForm() {
   return (
     <div className="bg-primary min-h-screen h-full flex justify-center items-center">
-      <Card className="w-1/4 dark">
+      <Card className="w-1/3 dark">
         <CardHeader>
           <CardTitle className="text-2xl">Login</CardTitle>
           <CardDescription>
@@ -24,11 +24,11 @@ export function LoginForm() {
         <CardContent>
           <div className="grid gap-4">
             <div className="grid gap-2">
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="email">Phone Number</Label>
               <Input
                 id="email"
                 type="email"
-                placeholder="m@example.com"
+                placeholder=""
                 required
               />
             </div>
@@ -46,13 +46,10 @@ export function LoginForm() {
             <Button type="submit" className="w-full">
               Login
             </Button>
-            <Button variant="outline" className="w-full">
-              Login with Google
-            </Button>
           </div>
           <div className="mt-4 text-center text-sm">
             Don&apos;t have an account?{" "}
-            <Link to="#"
+            <Link to="/register"
               className="underline"
             >
               Sign up
