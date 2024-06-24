@@ -29,21 +29,21 @@ import TableFooterItems from "./dashboard/TableFooterItems.js";
 import { useCallback, useEffect, useState } from "react";
 import { PaginationBar } from "./dashboard/PaginationBar.js";
 
-
 type People = {
-  name: string
-  id: number
-  badge: string
-  age: number
-  date: string
+  name: string; // Name of the person
+  id: number; // Unique identifier
+  badge: string; // Status badge (active, inactive, deceased)
+  age: number; // Age of the person
+  date: string; // Date associated with the person
 }
 
 export function Dashboard() {
-  const [ statusBadge, setStatusBadge ] = useState("all");
-  const [ userInfo, setUserInfo ] = useState<People[]>([]);
-  const [ currentPage, setCurrentPage ] = useState(1);
-  const [ userListPerPage, setUserListPerPage ] = useState(10);
+  const [ statusBadge, setStatusBadge ] = useState("all"); // State for filtering status badge
+  const [ userInfo, setUserInfo ] = useState<People[]>([]); // State for user information
+  const [ currentPage, setCurrentPage ] = useState(1); // State for current page number
+  const [ userListPerPage, setUserListPerPage ] = useState(10); // State for users per page
 
+  // Function to handle status badge change
   const handleStatusBadge = useCallback(() => { 
     if(statusBadge === "all") {
       setUserInfo(people);
@@ -59,19 +59,21 @@ export function Dashboard() {
     }
   }, [statusBadge]);
 
-  // Get current user list
+  // Get current user list based on pagination
   const indexOfLastUser = currentPage * userListPerPage;
   const indexFirstUser = indexOfLastUser - userListPerPage;
   const currentUser = userInfo.slice(indexFirstUser, indexOfLastUser);
 
-  // Change page
+  // Function to handle pagination click
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
+  // Function to handle status badge click
   function handleClick(status: string) {
     setStatusBadge(status);
     handleStatusBadge();
   }
 
+  // Effect to update user list when status badge changes
   useEffect(() => {
     handleStatusBadge();
   }, [statusBadge, handleStatusBadge]);
@@ -83,6 +85,7 @@ export function Dashboard() {
         <Header />
         <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8">
           <Tabs>
+            {/* Tabs for different status badges */}
             <div className="flex items-center">
               <TabsList defaultValue={statusBadge}>
                 <TabsTrigger value="all"  onClick={() => handleClick("all")}>
@@ -108,6 +111,7 @@ export function Dashboard() {
                   Deceased
                 </TabsTrigger>
               </TabsList>
+              {/* Dropdown menu for additional actions */}
               <div className="ml-auto flex items-center gap-2">
                 <DropdownMenu>
                   <DropdownMenuTrigger
@@ -138,12 +142,14 @@ export function Dashboard() {
                     </DropdownMenuCheckboxItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
+                {/* Button to import */}
                 <Button size="sm" variant="outline" className="h-8 gap-1">
                   <File className="h-3.5 w-3.5 text-popover-foreground" />
                   <span className="sr-only sm:not-sr-only sm:whitespace-nowrap text-popover-foreground">
                     Import
                   </span>
                 </Button>
+                {/* Button to add new user */}
                 <Button size="sm" className="h-8 gap-1">
                   <PlusCircle className="h-3.5 w-3.5" />
                   <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
@@ -152,13 +158,14 @@ export function Dashboard() {
                 </Button>
               </div>
             </div>
-            {/* <HeaderTabs /> */}
+            {/* Content for each tab based on status badge */}
             <TabsContent value={statusBadge}>
               <Card x-chunk="dashboard-06-chunk-0">
                 <CardContent>
                   <Table>
                     <TableHeaderItems />
                     <TableBody>
+                      {/* Render list of users */}
                       {
                         currentUser.map(
                           (
@@ -184,6 +191,7 @@ export function Dashboard() {
                   </Table>
                 </CardContent>
                 <TableFooterItems />
+                {/* Pagination bar */}
                 <PaginationBar paginate={paginate} userListPerPage={userListPerPage} totalUsers={userInfo.length} />
               </Card>
             </TabsContent>
@@ -194,3 +202,4 @@ export function Dashboard() {
     </div>
   );
 }
+

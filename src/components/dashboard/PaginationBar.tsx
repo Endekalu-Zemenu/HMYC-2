@@ -52,7 +52,7 @@ export function PaginationBar({ userListPerPage, totalUsers, paginate }: Props) 
   }
 
   // Function to handle clicking on a page number
-  function handleClick(number) {
+  function handleClick(number: number) {
     setActivePage(number); // Set the active page
     paginate(number); // Trigger the pagination callback
   }
@@ -81,9 +81,15 @@ export function PaginationBar({ userListPerPage, totalUsers, paginate }: Props) 
         ))}
 
         {/* Ellipsis */}
-        <PaginationItem>
-          <PaginationEllipsis />
-        </PaginationItem>
+        
+        {
+          totalPages > 5
+          && (
+            <PaginationItem>
+              <PaginationEllipsis />
+            </PaginationItem>
+          )
+        }
 
         {/* Next button */}
         <PaginationItem>
