@@ -27,6 +27,8 @@ import people from "./dashboard/people.js";
 import TableHeaderItems from "./dashboard/TableHeaderItems.js";
 import TableFooterItems from "./dashboard/TableFooterItems.js";
 import { useCallback, useEffect, useState } from "react";
+import { PaginationBar } from "./dashboard/PaginationBar.js";
+
 
 type People = {
   name: string
@@ -37,8 +39,10 @@ type People = {
 }
 
 export function Dashboard() {
-  const [statusBadge, setStatusBadge] = useState("all");
+  const [ statusBadge, setStatusBadge ] = useState("all");
   const [ userInfo, setUserInfo ] = useState<People[]>([]);
+  const [ currentPage, setCurrentPage ] = useState(1);
+  const [ userListPerPage, setUserListPerPage ] = useState(10);
 
   const handleStatusBadge = useCallback(() => { 
     if(statusBadge === "all") {
@@ -54,6 +58,14 @@ export function Dashboard() {
       setUserInfo(result)
     }
   }, [statusBadge]);
+
+  // Get current user list
+  const indexOfLastUser = currentPage * userListPerPage;
+  const indexFirstUser = indexOfLastUser - userListPerPage;
+  const currentUser = userInfo.slice(indexFirstUser, indexOfLastUser);
+
+  // Change page
+  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
   function handleClick(status: string) {
     setStatusBadge(status);
@@ -148,7 +160,7 @@ export function Dashboard() {
                     <TableHeaderItems />
                     <TableBody>
                       {
-                        userInfo.map(
+                        currentUser.map(
                           (
                             user: {
                               name: string,
@@ -172,9 +184,11 @@ export function Dashboard() {
                   </Table>
                 </CardContent>
                 <TableFooterItems />
+                <PaginationBar paginate={paginate} userListPerPage={userListPerPage} totalUsers={userInfo.length} />
               </Card>
             </TabsContent>
           </Tabs>
+          
         </main>
       </div>
     </div>
