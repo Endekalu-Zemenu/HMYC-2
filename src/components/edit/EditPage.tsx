@@ -1,5 +1,5 @@
-import Header from "../dashboard/Header/Header.js"
-import SideBar from "../dashboard/SideBar"
+import Header from "../Users_Page/Header/Header.js"
+import SideBar from "../Users_Page/SideBar.js"
 import userImg from "../../assets/1.png"
 
 import { Card } from "../ui/card"

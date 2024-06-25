@@ -1,6 +1,6 @@
 import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
-import { ChevronRight, MoreHorizontal } from "lucide-react"
+import { ChevronRight, ChevronLeft, MoreHorizontal } from "lucide-react"
 
 import { cn } from "../../lib/utils"
 
@@ -80,13 +80,29 @@ const BreadcrumbSeparator = ({
   <li
     role="presentation"
     aria-hidden="true"
-    className={cn("[&>svg]:size-3.5", className)}
+    className={cn("[&<svg]:size-3.5", className)}
     {...props}
   >
     {children ?? <ChevronRight />}
   </li>
 )
 BreadcrumbSeparator.displayName = "BreadcrumbSeparator"
+
+const BreadcrumbSeparatorLeft = ({
+  children,
+  className,
+  ...props
+}: React.ComponentProps<"li">) => (
+  <li
+    role="presentation"
+    aria-hidden="true"
+    className={cn("[&<svg]:size-3.5", className)}
+    {...props}
+  >
+    {children ?? <ChevronLeft />}
+  </li>
+)
+BreadcrumbSeparatorLeft.displayName = "BreadcrumbSeparatorLeft"
 
 const BreadcrumbEllipsis = ({
   className,
@@ -111,5 +127,6 @@ export {
   BreadcrumbLink,
   BreadcrumbPage,
   BreadcrumbSeparator,
+  BreadcrumbSeparatorLeft,
   BreadcrumbEllipsis,
 }

@@ -1,8 +1,5 @@
 import userImg from "../../assets/1.png"
 import Image from "../ui/Image"
-// import { Link } from "react-router-dom"
-// import { Routes, Route } from "react-router-dom"
-// import EditPage from "../edit/EditPage"
 
 import {
   DropdownMenu,
@@ -18,6 +15,12 @@ import { Badge } from "../ui/badge"
 import { Button } from "../ui/button"
 import { Link } from "react-router-dom"
 
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "../ui/avatar"
+
 type person = {
   name: string
   id: number
@@ -29,13 +32,17 @@ const UserList = ({ name, id, badge, age }: person) => {
   return (
     <TableRow className="hover:bg-muted/50">
       <TableCell className="hidden sm:table-cell">
-        <Image
+        {/* <Image
           alt="Product image"
           className="aspect-square rounded-full object-cover"
           height="12"
           src={userImg}
           width="50"
-        />
+        /> */}
+        <Avatar className="hidden h-12 w-12 sm:flex">
+          <AvatarImage src="/avatars/02.png" alt="Avatar" />
+          <AvatarFallback>{ name[0] + name[(name.indexOf(" ") + 1)] }</AvatarFallback>
+        </Avatar>
       </TableCell>
       <TableCell className="font-medium">
         { name }

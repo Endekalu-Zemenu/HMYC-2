@@ -15,6 +15,7 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
+  BreadcrumbSeparatorLeft,
 } from "../../ui/breadcrumb"
 
 import {
@@ -29,8 +30,23 @@ import {
 import { Input } from "../../ui/input"
 import { Button } from "../../ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "../../ui/sheet"
+import { useState, MouseEvent } from "react"
 
-const Header = () => {
+interface Props {
+  handleSearch?: (value: string) => void
+  text: string
+}
+
+const Header = ({ handleSearch, text }: Props) => {
+
+  const [ searchInput, setSearchInput ] = useState("");
+
+  function handleChange(event: MouseEvent) {
+    const { value } = event.target;
+    setSearchInput(value);
+    handleSearch(value);
+  }
+
   return (
     <header className="sticky top-0 z-30 flex h-14 items-center gap-4 border-b bg-background px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">
       <Sheet>
@@ -67,12 +83,26 @@ const Header = () => {
         </SheetContent>
       </Sheet>
       <Breadcrumb className="hidden md:flex">
-        <BreadcrumbList>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbPage>All Users</BreadcrumbPage>
-          </BreadcrumbItem>
-        </BreadcrumbList>
+        {
+          text === "Dashboard" || text === "Users"
+          ? (
+            <BreadcrumbList>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbPage>{text}</BreadcrumbPage>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          ) : (
+            <Link to="/users">
+              <BreadcrumbList>
+                <BreadcrumbSeparatorLeft />
+                <BreadcrumbItem>
+                  <BreadcrumbPage>{text}</BreadcrumbPage>
+                </BreadcrumbItem>
+              </BreadcrumbList>
+            </Link>
+          )
+        }
       </Breadcrumb>
       <div className="relative ml-auto flex-1 md:grow-0">
         <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
@@ -80,6 +110,8 @@ const Header = () => {
           type="search"
           placeholder="Search..."
           className="w-full text-white rounded-lg bg-background pl-8 md:w-[200px] lg:w-[336px]"
+          onChange={() => handleChange(event)}
+          value={searchInput}
         />
       </div>
       <DropdownMenu>

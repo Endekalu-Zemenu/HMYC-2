@@ -18,16 +18,16 @@ import { Card, CardContent } from "./ui/card";
 import { Table, TableBody } from "./ui/table";
 
 import { Tabs, TabsContent } from "./ui/tabs";
-import SideBar from "./dashboard/SideBar";
-import Header from "./dashboard/Header/Header.js";
-// import HeaderTabs from "./dashboard/HeaderTabs"
-import UserList from "./dashboard/UserList";
+import SideBar from "./Users_Page/SideBar.js";
+import Header from "./Users_Page/Header/Header.js";
+import UserList from "./Users_Page/UserList.js";
 
-import people from "./dashboard/people.js";
-import TableHeaderItems from "./dashboard/TableHeaderItems.js";
-import TableFooterItems from "./dashboard/TableFooterItems.js";
+import people from "./Users_Page/people.js";
+import TableHeaderItems from "./Users_Page/TableHeaderItems.js";
+import TableFooterItems from "./Users_Page/TableFooterItems.js";
 import { useCallback, useEffect, useState } from "react";
-import { PaginationBar } from "./dashboard/PaginationBar.js";
+import { PaginationBar } from "./Users_Page/PaginationBar.js";
+import { Link } from "react-router-dom";
 
 type People = {
   name: string; // Name of the person
@@ -37,20 +37,11 @@ type People = {
   date: string; // Date associated with the person
 }
 
-type currenTab = {
-  dashboard: string
-  users: string
-}
-
 export function Users() {
   const [ statusBadge, setStatusBadge ] = useState("all"); // State for filtering status badge
   const [ userInfo, setUserInfo ] = useState<People[]>([]); // State for user information
   const [ currentPage, setCurrentPage ] = useState(1); // State for current page number
   const [ userListPerPage ] = useState(10); // State for users per page
-  const [ currenTab, setCurrentTab ] = useState<currenTab>({ 
-    dashboard: "text-muted-foreground", 
-    users: "bg-primary text-primary-foreground" 
-  });
 
   // Function to handle status badge change
   const handleStatusBadge = useCallback(() => { 
@@ -82,38 +73,21 @@ export function Users() {
     handleStatusBadge();
   }
 
-  function handleCurrentTabDashboard() {
-    // currenTab.dashboard === "text-muted-foreground"
-    // ? 
-    setCurrentTab({
-      dashboard: "bg-primary text-primary-foreground",
-      users: "text-muted-foreground"
-    })
-    // : 
+  function handleSearch(value: string) {
+    // console.log(value);
+    const result = people.filter(person => person.name.includes(value));
+    setUserInfo(result);
   }
 
-  function handleCurrentTabUsers() {
-    setCurrentTab({
-      dashboard: "text-muted-foreground",
-      users: "bg-primary text-primary-foreground"
-    })
-  }
-
-  // Effect to update user list when status badge changes
   useEffect(() => {
     handleStatusBadge();
   }, [statusBadge, handleStatusBadge]);
 
   return (
     <div className="flex min-h-screen w-full flex-col bg-primary-foreground dark">
-      <SideBar
-        dashboard={currenTab.dashboard}
-        users={currenTab.users}
-        handleCurrentTabDashboard={handleCurrentTabDashboard}
-        handleCurrentTabUsers={handleCurrentTabUsers} 
-      />
+      <SideBar />
       <div className="flex flex-col sm:gap-4 sm:py-4 sm:pl-14">
-        <Header />
+        <Header handleSearch={handleSearch} text="Users"/>
         <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8">
           <Tabs>
             {/* Tabs for different status badges */}
@@ -183,9 +157,11 @@ export function Users() {
                 {/* Button to add new user */}
                 <Button size="sm" className="h-8 gap-1">
                   <PlusCircle className="h-3.5 w-3.5" />
-                  <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
-                    Add New User
-                  </span>
+                  <Link to="/new">
+                    <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
+                      Add New User
+                    </span>
+                  </Link>
                 </Button>
               </div>
             </div>

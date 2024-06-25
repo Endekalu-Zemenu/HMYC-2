@@ -12,14 +12,34 @@ import {
   TooltipProvider,
 } from "../ui/tooltip"
 
-interface Props {
+import { useState } from "react"
+
+type currentTab = {
   dashboard: string
   users: string
-  handleCurrentTabDashboard: () => void
-  handleCurrentTabUsers: () => void
 }
 
-const SideBar = ({ dashboard, users, handleCurrentTabDashboard, handleCurrentTabUsers }: Props) => {
+const SideBar = () => {
+
+  const [ currentTab, setCurrentTab ] = useState<currentTab>({ 
+    dashboard: "text-muted-foreground", 
+    users: "bg-primary text-primary-foreground" 
+  });
+
+  function handleCurrentTabDashboard() {
+    setCurrentTab({
+      dashboard: "bg-primary text-primary-foreground",
+      users: "text-muted-foreground"
+    }) 
+  }
+
+  function handleCurrentTabUsers() {
+    setCurrentTab({
+      dashboard: "text-muted-foreground",
+      users: "bg-primary text-primary-foreground"
+    })
+  }
+
   return (
     <aside className="fixed inset-y-0 left-0 z-10 hidden w-14 flex-col border-r bg-background sm:flex">
       <nav className="flex flex-col items-center gap-4 px-2 sm:py-5">
@@ -27,12 +47,12 @@ const SideBar = ({ dashboard, users, handleCurrentTabDashboard, handleCurrentTab
           <Tooltip>
             <TooltipTrigger asChild>
               <Link
-                to="/"
+                to="/dashboard"
                 className=
                 {`
                   group flex h-9 w-9 items-center justify-center 
                   rounded-full  transition-colors md:h-8 md:w-8
-                  ${dashboard}
+                  ${currentTab.dashboard}
                 `}
                 onClick={handleCurrentTabDashboard}
               >
@@ -53,7 +73,7 @@ const SideBar = ({ dashboard, users, handleCurrentTabDashboard, handleCurrentTab
                     group rounded-full 
                     flex h-9 w-9 items-center justify-center  
                     transition-colors md:h-8 md:w-8
-                    ${users}
+                    ${currentTab.users}
                   `}
                 onClick={handleCurrentTabUsers}
               >

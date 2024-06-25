@@ -12,7 +12,7 @@ function App() {
   return (
     <div>
       <Routes>
-        <Route path='/' element={<Dashboard />}/>
+        <Route path='/dashboard' element={<Dashboard />}/>
         <Route path='/users' element={<Users />}/>
         <Route path='/edit' element={<EditPage />}/>
         <Route path='/login' element={<LoginForm />}/>
