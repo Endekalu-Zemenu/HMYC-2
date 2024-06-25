@@ -1,4 +1,4 @@
-import Header from "../dashboard/Header"
+import Header from "../dashboard/Header/Header.js"
 import SideBar from "../dashboard/SideBar"
 import userImg from "../../assets/1.png"
 

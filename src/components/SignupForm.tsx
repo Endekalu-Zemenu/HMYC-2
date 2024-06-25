@@ -8,19 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "./ui/card"
-import { Input } from "./ui/input"
-import { Label } from "./ui/label"
 
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "./ui/select"
-
-import { RadioGroup, RadioGroupItem } from "./ui/radio-group"
 import { DatePicker } from "./Signup/DatePicker"
 import InputField from "./Signup/InputField"
 import RadioField from "./Signup/RadioField"
@@ -28,8 +16,8 @@ import SelectableField from "./Signup/SelectableField"
 
 export function SignupForm() {
   return (
-    <div className="bg-primary min-h-screen h-full flex justify-center items-center">
-      <Card className="mx-auto dark w-1/2">
+    <div className="dark bg-primary-foreground min-h-screen h-full flex justify-center items-center">
+      <Card className="mx-auto dark">
         <CardHeader>
           <CardTitle className="text-xl">HMYC</CardTitle>
           <CardDescription>

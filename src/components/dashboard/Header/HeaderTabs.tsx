@@ -5,12 +5,12 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "../ui/dropdown-menu"
+} from "../../ui/dropdown-menu"
 
 import {
   TabsList,
   TabsTrigger,
-} from "../ui/tabs"
+} from "../../ui/tabs"
 
 import {
   File,
@@ -18,7 +18,7 @@ import {
   PlusCircle,
 } from "lucide-react"
 
-import { Button } from "../ui/button"
+import { Button } from "../../ui/button"
 
 const HeaderTabs = () => {
   return (

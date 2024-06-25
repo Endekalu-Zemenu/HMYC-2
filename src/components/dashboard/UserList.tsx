@@ -27,7 +27,7 @@ type person = {
 
 const UserList = ({ name, id, badge, age }: person) => {
   return (
-    <TableRow>
+    <TableRow className="hover:bg-muted/50">
       <TableCell className="hidden sm:table-cell">
         <Image
           alt="Product image"

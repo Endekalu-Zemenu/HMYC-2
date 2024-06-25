@@ -12,7 +12,14 @@ import {
   TooltipProvider,
 } from "../ui/tooltip"
 
-const SideBar = () => {
+interface Props {
+  dashboard: string
+  users: string
+  handleCurrentTabDashboard: () => void
+  handleCurrentTabUsers: () => void
+}
+
+const SideBar = ({ dashboard, users, handleCurrentTabDashboard, handleCurrentTabUsers }: Props) => {
   return (
     <aside className="fixed inset-y-0 left-0 z-10 hidden w-14 flex-col border-r bg-background sm:flex">
       <nav className="flex flex-col items-center gap-4 px-2 sm:py-5">
@@ -20,8 +27,14 @@ const SideBar = () => {
           <Tooltip>
             <TooltipTrigger asChild>
               <Link
-                to="#"
-                className="group flex h-9 w-9 items-center justify-center rounded-full text-muted-foreground transition-colors md:h-8 md:w-8"
+                to="/"
+                className=
+                {`
+                  group flex h-9 w-9 items-center justify-center 
+                  rounded-full  transition-colors md:h-8 md:w-8
+                  ${dashboard}
+                `}
+                onClick={handleCurrentTabDashboard}
               >
                 <Home className="group-hover:scale-110 h-5 w-5" />
                 <span className="sr-only">Dashboard</span>
@@ -34,8 +47,15 @@ const SideBar = () => {
           <Tooltip>
             <TooltipTrigger asChild>
               <Link
-                to="#"
-                className="group bg-primary rounded-full flex h-9 w-9 items-center justify-center text-primary-foreground transition-colors md:h-8 md:w-8"
+                to="/users"
+                className=
+                  {`
+                    group rounded-full 
+                    flex h-9 w-9 items-center justify-center  
+                    transition-colors md:h-8 md:w-8
+                    ${users}
+                  `}
+                onClick={handleCurrentTabUsers}
               >
                 <Users2 className="group-hover:scale-110 h-5 w-5" />
                 <span className="sr-only">Users</span>

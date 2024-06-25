@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
-import userImg from "../../assets/1.png"
-import Image from "../ui/Image"
+import userImg from "../../../assets/1.png"
+import Image from "../../ui/Image"
 import {
   Home,
   LineChart,
@@ -15,7 +15,7 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "../ui/breadcrumb"
+} from "../../ui/breadcrumb"
 
 import {
   DropdownMenu,
@@ -24,11 +24,11 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "../ui/dropdown-menu"
+} from "../../ui/dropdown-menu"
 
-import { Input } from "../ui/input"
-import { Button } from "../ui/button"
-import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet"
+import { Input } from "../../ui/input"
+import { Button } from "../../ui/button"
+import { Sheet, SheetContent, SheetTrigger } from "../../ui/sheet"
 
 const Header = () => {
   return (
